@@ -1,5 +1,9 @@
 pipeline {
     agent any
+
+    tools{
+        jdk 'jdk17'
+        nodejs 'node16'
     
     environment{
         
@@ -37,5 +41,31 @@ pipeline {
             
             }
         }
+
+       stage('Install Dependencies') {
+            steps {
+                
+            sh "npm install"
+            
+            }
+        }
+        
+        stage('Backend') {
+            steps {
+                dir('/var/lib/jenkins/workspace/fullstack-bank/app/backend') {
+                    sh "npm install"
+                }
+            }
+        }
+        
+        stage('frontend') {
+            steps {
+                dir('/var/lib/jenkins/workspace/fullstack-bank/app/frontend') {
+                    sh "npm install"
+                }
+            }
+        }
+        
+      
     }
 }
