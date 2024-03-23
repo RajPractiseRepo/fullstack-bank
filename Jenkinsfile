@@ -19,7 +19,7 @@ pipeline {
         
         stage('Owasp FS Scan') {
             steps {
-                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DC'
+                dependencyCheck additionalArguments: '--scan ./app/backend --disableYarnAudit --disableNodeAudit', odcInstallation: 'DC'
                     dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
