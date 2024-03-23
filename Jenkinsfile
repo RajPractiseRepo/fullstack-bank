@@ -65,6 +65,14 @@ pipeline {
                 }
             }
         }
+
+          stage('Deploy to Container') {
+            steps {
+                
+                   sh "npm run compose:up -d"
+                
+            }
+        }
         
       
     }
